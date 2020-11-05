@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://Martin:Martin@cluster0.3oesu.mongodb.net/BLOG?retryWrites=true&w=majority",
+    "mySecret":"MartinSecret"
+}
