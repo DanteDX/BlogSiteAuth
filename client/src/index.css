@@ -47,7 +47,7 @@ body{
 
 .LandingImage{
     width:100%;
-    height:800px;
+    height:1000px;
 }
 
 .LandingImageContainer{
@@ -61,7 +61,7 @@ body{
 .LandingImageContainer h1{
     color:#ffffff;
     position:absolute;
-    left:0%;
+    left:3%;
     top:90%;
     font-size:70px;
 }
@@ -70,13 +70,37 @@ body{
     padding:30px;
 }
 
-.signUpFormContents form{
-    background-color: #3c4f65;
+.signUpFormContents h2{
     color:white;
-    padding:20px;
+    font-weight: bold;
+}
+
+.signUpFormContents form{
+    background-color: #404b69;
+    color:white;
+    padding:30px;
     display: inline-block;
     border-radius: 20px;
     width:70%;
+    font-size: 20px;
+    box-shadow: 1px 1px 3px 3px  #23103a;
+}
+
+.signUpFormContents form input{
+    padding:10px;
+    font-size: 20px;
+    width:70%;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px 1px  #23103a;
+}
+
+.signUpFormContents form button{
+    padding:10px;
+    font-size: 20px;
+    border-radius: 14px;
+    box-shadow: 1px 1px 1px 1px  #23103a;
+    width: 70%;
+    cursor:button;
 }
 
 /* .signUpFormContents form input,label,button{
@@ -87,15 +111,39 @@ body{
 
 .logInFormContents{
     padding:30px;
+    
+}
+.logInFormContents h2{
+    color:white;
+    font-weight: bold;
 }
 
 .logInFormContents form{
-    background-color: #3c4f65;
+    background-color: #404b69;
     color:white;
-    padding:20px;
+    padding:24px;
     display: inline-block;
     border-radius: 20px;
     width:70%;
+    font-size: 24px;
+    box-shadow: 1px 1px 3px 3px  #23103a;
+}
+
+.logInFormContents form input{
+    padding:10px;
+    font-size: 20px;
+    width:70%;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px 1px  #23103a;
+}
+
+.logInFormContents form button{
+    padding:10px;
+    font-size: 20px;
+    border-radius: 14px;
+    box-shadow: 1px 1px 1px 1px  #23103a;
+    width: 70%;
+    cursor:pointer;
 }
 
 /* .logInFormContents form input,label,button{
@@ -103,15 +151,17 @@ body{
 } */
 
 .blogInput{
-    width:70%;
+    width:74%;
     height:130px;
     margin:10px;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-left: 7px;
+    margin-right: 0px;
     background-color: #f5efef;
     font-weight: bold;
     border-radius: 10px;
     font-size: 20px;
+    box-shadow: 1px 1px 1px 1px #23103a;
 }
 
 .blogInput::placeholder{
@@ -122,4 +172,49 @@ body{
     padding:10px;
     font-size: 20px;
     display:block;
+    margin-left: 4px;
+    width:30%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px #23103a;
+    font-weight: bold;
+}
+
+.blogListRender{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    margin:14px;
+}
+
+.eachBlog{
+    background-color: #404b69;
+    color:white;
+    padding:10px;
+    word-break: break-all;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px 4px  #23103a;
+}
+
+.eachBlog:hover{
+    position:relative;
+    left:3px;
+    top:3px;
+    box-shadow:1px 1px 7px 7px #23103a;;
+}
+.eachBlog h3{
+    margin-top: 0px;
+}
+
+.blogContents p{
+    text-align: center;
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media screen and (max-width:550px){
+    .blogListRender{
+        grid-template-columns: 1fr;
+    }
 }

@@ -36,12 +36,13 @@ const LogInForm = (props) => {
     }
     return (
         <div className="logInFormContents">
+            <h2>Log In</h2>
             <form onSubmit={e => logInFormHandler(e)}>
-                <label htmlFor="userName">User Name: </label>
-                <input type="text" id="userName" name="userName"/>
+                {/* <label htmlFor="userName">User Name: </label> */}
+                <input type="text" id="userName" name="userName" placeholder="User Name..."/>
                 <br/><br/>
-                <label htmlFor="userPassword">Password:</label>
-                <input type="password" id="userPasword" name="userPassword"/>
+                {/* <label htmlFor="userPassword">Password:</label> */}
+                <input type="password" id="userPasword" name="userPassword" placeholder="Password"/>
                 <br/><br/>
                 <button type="submit">Log In</button>
             </form>

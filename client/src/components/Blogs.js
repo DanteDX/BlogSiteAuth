@@ -39,14 +39,16 @@ const Blogs = ({isStored,userName}) => {
     )) 
     
     return (
-        <div>
+        <div className="blogContents">
             {isStored ? (<div>
                 <form onSubmit={e => blogSubmitHandler(e)}>
                     <textarea className="blogInput" name="blogInput" placeholder="Write here...."/>
                     <button className="blogInputSubmit" type="submit">Submit</button>
                 </form>
-            </div>) : (<p>Please Log in to post new blog!</p>)}
-            {blogList.length === 0 ? (<p>No Blogs yet</p>) : blogListRender}
+            </div>) : (<p>Please Log in to create new blog!</p>)}
+            <div className="blogListRender">
+                {blogList.length === 0 ? (<p>No Blogs yet</p>) : blogListRender}
+            </div>
         </div>
         
     )
