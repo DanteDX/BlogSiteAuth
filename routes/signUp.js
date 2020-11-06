@@ -3,6 +3,7 @@ const router = express.Router();
 const {check,validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 const bcrypt =  require('bcryptjs');
+const config = require('config');
 const User = require("../model/User");
 
 router.post('/',[
@@ -22,8 +23,21 @@ router.post('/',[
         // const decryptedPassword = await bcrypt.compare(userPassword,Password);
         // console.log({userEmail,Password});
         const user = new User({userEmail,Password});
+         const payload = {
+            userId:{
+                id:user.id
+            }
+        };
         await user.save();
-        res.json(user);
+        jwt.sign(payload,config.get('mySecret'),{expiresIn:3700},(err,token)=>{
+            if(err) throw err;
+            // const decoded = jwt.verify(token,"martinSecret");
+            console.log(token);
+            res.json({token});
+        });
+        
+        // await user.save();
+        // res.json(user);
         
         // const payload = {
         //     userInfomation:{userEmail,Password,decryptedPassword}

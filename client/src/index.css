@@ -20,6 +20,24 @@ body{
     font-weight: bold;
 }
 
+.navbarContents button{
+    text-decoration: none;
+    background-color: #33313b;
+    color:white;
+    font-size: 20px;
+    padding:20px;
+    font-weight: bold;
+    cursor: pointer;
+    border:1px solid #33313b;
+}
+
+.navbarContents button:hover{
+    background-color: #3c4f65;
+    position:relative;
+    left:4px;
+    font-size:22px;
+}
+
 .navbarContents a:hover{
     background-color: #3c4f65;
     position:relative;
@@ -43,7 +61,43 @@ body{
 .LandingImageContainer h1{
     color:#ffffff;
     position:absolute;
-    left:20%;
+    left:0%;
     top:90%;
     font-size:70px;
 }
+
+.signUpFormContents{
+    padding:30px;
+}
+
+.signUpFormContents form{
+    background-color: #3c4f65;
+    color:white;
+    padding:20px;
+    display: inline-block;
+    border-radius: 20px;
+    width:70%;
+}
+
+/* .signUpFormContents form input,label,button{
+    font-size: 24px;
+} */
+
+/*........................*/
+
+.logInFormContents{
+    padding:30px;
+}
+
+.logInFormContents form{
+    background-color: #3c4f65;
+    color:white;
+    padding:20px;
+    display: inline-block;
+    border-radius: 20px;
+    width:70%;
+}
+
+/* .logInFormContents form input,label,button{
+    font-size: 24px;
+} */

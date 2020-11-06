@@ -19,7 +19,6 @@ const SignUpForm = () => {
     }
     return (
         <div className="signUpFormContents">
-            <p>This is the Sign Up Form</p>
             <form onSubmit={e => signUpFormHandler(e)}>
                 <label htmlFor="userEmail">Email: </label>
                 <input type="email" id="userEmail" name="userEmail"/>

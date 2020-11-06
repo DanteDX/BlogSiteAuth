@@ -4,6 +4,7 @@ const {check,validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 const bcrypt =  require('bcryptjs');
 const User = require("../model/User");
+const config = require('config');
 
 router.post('/',[
     check('userEmail',"A username is required").not().isEmpty(),
@@ -21,17 +22,34 @@ router.post('/',[
         // const salt  = await bcrypt.genSalt(10);
         // const Password = await bcrypt.hash(userPassword,salt);
         const user = await User.findOne({userEmail:userEmail});
-        console.log(user);
-        // if(!user){
-        //     return res.json({'msg':'No user exist'});
-        // }
+        // console.log(user);
+        if(!user){
+            return res.json({'msg':'No user Exist on that email'});
+        }
         const decryptedPassword = await bcrypt.compare(userPassword,user.Password);
-        console.log(decryptedPassword);
+        // console.log(decryptedPassword);
+        if(decryptedPassword === false){
+            return res.json({'msg':'Email exist but password did not match'});
+        }
+        // console.log(decryptedPassword);
         // console.log({userEmail,Password});
         // const user = new User({userEmail,Password});
         // await user.save();
         // res.json(user);
-        res.json({'msg':'password matched'});
+        console.log(user._id);
+        const payload = {
+            userId:{
+                id:user._id
+            }
+        };
+        jwt.sign(payload,config.get('mySecret'),{expiresIn:3700},(err,token)=>{
+            if(err) throw err;
+            // const decoded = jwt.verify(token,"martinSecret");
+            console.log(typeof(token));
+            // localStorage.setItem('authToken',token);
+            res.json({token});
+        });
+        // res.json({'msg':'password matched'});
         // if(decryptedPassword){
         //     res.json({'msg':'Password matched'});
         // }else{
@@ -51,7 +69,7 @@ router.post('/',[
         
         // res.json({userEmail,decryptedPassword});
     }catch(err){
-        res.send('error!');
+        res.json({err});
     }
 })
 
