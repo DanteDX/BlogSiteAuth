@@ -7,7 +7,7 @@ const config = require('config');
 const User = require("../model/User");
 
 router.post('/',[
-    check('userEmail',"A username is required").not().isEmpty(),
+    check('userName',"A username is required").not().isEmpty(),
     check('userPassword',"Minimum Six Character").isLength({min:6})
 ],async(req,res)=>{
     const errors = validationResult(req);
@@ -15,14 +15,14 @@ router.post('/',[
         return res.json({errors:errors.array()});
     }
 
-    const {userEmail,userPassword} = req.body;
+    const {userName,userPassword} = req.body;
 
     try{
         const salt  = await bcrypt.genSalt(10);
         const Password = await bcrypt.hash(userPassword,salt);
         // const decryptedPassword = await bcrypt.compare(userPassword,Password);
         // console.log({userEmail,Password});
-        const user = new User({userEmail,Password});
+        const user = new User({userName,Password});
          const payload = {
             userId:{
                 id:user.id

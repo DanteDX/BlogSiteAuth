@@ -7,7 +7,7 @@ const User = require("../model/User");
 const config = require('config');
 
 router.post('/',[
-    check('userEmail',"A username is required").not().isEmpty(),
+    check('userName',"A username is required").not().isEmpty(),
     check('userPassword',"Minimum Six Character").isLength({min:6})
 ],async(req,res)=>{
     const errors = validationResult(req);
@@ -15,13 +15,13 @@ router.post('/',[
         return res.json({errors:errors.array()});
     }
 
-    const {userEmail,userPassword} = req.body;
-    console.log(req.body);
+    const {userName,userPassword} = req.body;
 
     try{
         // const salt  = await bcrypt.genSalt(10);
         // const Password = await bcrypt.hash(userPassword,salt);
-        const user = await User.findOne({userEmail:userEmail});
+        const user = await User.findOne({userName:userName});
+        console.log(user);
         // console.log(user);
         if(!user){
             return res.json({'msg':'No user Exist on that email'});
@@ -29,14 +29,14 @@ router.post('/',[
         const decryptedPassword = await bcrypt.compare(userPassword,user.Password);
         // console.log(decryptedPassword);
         if(decryptedPassword === false){
-            return res.json({'msg':'Email exist but password did not match'});
+            return res.json({'msg':'User Name exist but password did not match'});
         }
         // console.log(decryptedPassword);
         // console.log({userEmail,Password});
         // const user = new User({userEmail,Password});
         // await user.save();
         // res.json(user);
-        console.log(user._id);
+        // console.log(user._id);
         const payload = {
             userId:{
                 id:user._id
@@ -45,7 +45,7 @@ router.post('/',[
         jwt.sign(payload,config.get('mySecret'),{expiresIn:3700},(err,token)=>{
             if(err) throw err;
             // const decoded = jwt.verify(token,"martinSecret");
-            console.log(typeof(token));
+            // console.log(typeof(token));
             // localStorage.setItem('authToken',token);
             res.json({token});
         });

@@ -1,27 +1,31 @@
 import React from 'react';
 import axios from 'axios';
+import {withRouter} from 'react-router';
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
 
     const signUpFormHandler = async(e) =>{
         e.preventDefault();
-        const userEmail = e.target.userEmail.value;
+        const userName = e.target.userName.value;
         const userPassword = e.target.userPassword.value;
-        const body = {userEmail,userPassword};
+        e.target.userName.value = "";
+        e.target.userPassword.value = "";
+        const body = {userName,userPassword};
         const config = {headers:{'Content-Type':'application/json'}};
         try{
             const response = await axios.post('/api/signUp',JSON.stringify(body),config);
             console.log(response);
+            alert('Sign Up Complete. Please Log In with your information');
+            props.history.push('/logIn');
         }catch(err){
             console.log(err);
         }
-        
     }
     return (
         <div className="signUpFormContents">
             <form onSubmit={e => signUpFormHandler(e)}>
-                <label htmlFor="userEmail">Email: </label>
-                <input type="email" id="userEmail" name="userEmail"/>
+                <label htmlFor="userName">User Name: </label>
+                <input type="text" id="userName" name="userName"/>
                 <br/><br/>
                 <label htmlFor="userPassword">Password:</label>
                 <input type="password" id="userPasword" name="userPassword"/>
@@ -32,4 +36,4 @@ const SignUpForm = () => {
     )
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);

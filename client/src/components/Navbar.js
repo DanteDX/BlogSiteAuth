@@ -1,11 +1,19 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from "react-redux";
-import {removeStorage} from '../actions/storageAction';
+import {addStorage, removeStorage} from '../actions/storageAction';
+import {removeUser,addUser} from "../actions/authAction";
 
-const Navbar = ({isStored,removeStorage}) => {
+const Navbar = ({isStored,removeStorage,addStorage,removeUser,addUser}) => {
+    if(localStorage.getItem('token')){
+        console.log(localStorage.getItem('token'));
+        addStorage();
+        addUser(localStorage.getItem('userName'));
+    }
     const logOutHandler = e =>{
         localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        removeUser();
         removeStorage();
     }
     return (
@@ -29,4 +37,4 @@ const mapStateToProps = state =>({
     isStored:state.authReducer.stored
 })
 
-export default connect(mapStateToProps,{removeStorage})(Navbar);
+export default connect(mapStateToProps,{removeStorage,addStorage,removeUser,addUser})(Navbar);
